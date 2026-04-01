@@ -36,5 +36,6 @@ with col2:
         st.rerun()
 
 st.write("Selected:", st.session_state.mode)
-GHZ_Circuit(n_qubits)
+qc = GHZ_Circuit(n_qubits)
+qc.draw("mpl")
 
