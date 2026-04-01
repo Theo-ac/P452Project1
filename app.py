@@ -35,7 +35,7 @@ with col2:
         st.session_state.mode = 1
         st.rerun()
 
-st.write("Selected:", st.session_state.mode)
+#st.write("Selected:", st.session_state.mode)
 ghz = GHZ_Circuit(n_qubits)
 st.pyplot(ghz.draw("mpl"))
 
