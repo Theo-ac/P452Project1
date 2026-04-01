@@ -2,6 +2,7 @@ import streamlit as st
 from backend import measure_Circuit
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
 x = st.slider("How many qubits do you want?", 0, 10, 5)
+
 # Keep state so the highlight persists
 if "mode" not in st.session_state:
     st.session_state.mode = 0   # default
