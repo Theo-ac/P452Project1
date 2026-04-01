@@ -24,6 +24,7 @@ with col1:
         type="primary" if st.session_state.mode == 0 else "secondary",
     ):
         st.session_state.mode = 0
+        st.rerun()
 
 with col2:
     if st.button(
@@ -32,20 +33,7 @@ with col2:
         type="primary" if st.session_state.mode == 1 else "secondary",
     ):
         st.session_state.mode = 1
-with col1:
-    if st.button(
-        "Option A",
-        key="toggle_a",
-        type="primary" if st.session_state.mode == 0 else "secondary",
-    ):
-        st.session_state.mode = 0
+        st.rerun()
 
-with col2:
-    if st.button(
-        "Option B",
-        key="toggle_b",
-        type="primary" if st.session_state.mode == 1 else "secondary",
-    ):
-        st.session_state.mode = 1
 st.write("Selected:", st.session_state.mode)
 
