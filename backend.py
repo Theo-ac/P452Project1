@@ -14,7 +14,7 @@ def GHZ_Circuit(n_qubits):
     for i in range(1, n_qubits):
         qc.cx(0, i)
     
-    qc.draw("mpl")
+    #qc.draw("mpl")
     return qc
 def create_Circuit(n_qubits, type):
     if type == 0:
