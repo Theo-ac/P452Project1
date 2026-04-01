@@ -9,10 +9,18 @@ if "mode" not in st.session_state:
 
 col1, col2 = st.columns(2)
 
+import streamlit as st
+
+# Initialize once
+if "mode" not in st.session_state:
+    st.session_state.mode = 0
+
+col1, col2 = st.columns(2)
+
 with col1:
     if st.button(
         "Option A",
-        key="btn_a",
+        key="toggle_a",
         type="primary" if st.session_state.mode == 0 else "secondary",
     ):
         st.session_state.mode = 0
@@ -20,10 +28,10 @@ with col1:
 with col2:
     if st.button(
         "Option B",
-        key="btn_b",
+        key="toggle_b",
         type="primary" if st.session_state.mode == 1 else "secondary",
     ):
         st.session_state.mode = 1
 
-st.write("Selected value:", st.session_state.mode)
+st.write("Selected:", st.session_state.mode)
 
