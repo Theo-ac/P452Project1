@@ -1,3 +1,4 @@
+!pip install qiskit-aer --q
 import qiskit
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
