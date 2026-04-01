@@ -3,6 +3,19 @@ from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
 from qiskit.visualization import plot_histogram
+
+def GHZ_Circuit(n_qubits):
+    qc = QuantumCircuit(n_qubits)
+
+    # Step 1: create superposition on qubit 0
+    qc.h(0)
+    
+    # Step 2: entangle all others with qubit 0
+    for i in range(1, n_qubits):
+        qc.cx(0, i)
+    
+    qc.draw("mpl")
+    return qc
 def create_Circuit(n_qubits, type):
     if type == 0:
         return teleportation(n_qubits)
