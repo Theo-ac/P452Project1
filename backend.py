@@ -3,6 +3,11 @@ from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
 from qiskit.visualization import plot_histogram
+def create_Circuit(n_qubits, type):
+    if type == 0:
+        return teleportation(n_qubits)
+    else: 
+        return hubbard(n_qubits)
 def measure_Circuit(circuit):
     sampler = SamplerV2()
     job = sampler.run([circuit], shots=1024)
