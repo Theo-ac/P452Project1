@@ -43,6 +43,7 @@ if option == 0:
         theta = st.slider("What rotation angle do you want to teleport?", -2*np.pi, 2*np.pi, 0.0, step=np.pi/16)
         #theta = 2*np.arctan(0.5) #solved for with inverse trig for desired state in q2.1
         qc, sv = teleportation(n_qubits, theta)
+        mqc = qc
         col1, col2, col3 = st.columns([1,1,1])
         with col1:
             st.write("Your secret qubit:")
@@ -60,9 +61,10 @@ if option == 0:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
     qc = GHZ_Circuit(n_qubits)
+    mqc = qc
     st.pyplot(qc.draw("mpl"))
 #mqc = create_Circuit(n_qubits, theta, mode)
-counts = measure_Circuit(qc)
+counts = measure_Circuit(mqc)
 all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
 full_counts = {state: counts.get(state, 0) for state in all_states}
 st.pyplot(plot_histogram(full_counts))
