@@ -2,6 +2,7 @@ import qiskit
 from qiskit import QuantumCircuit, transpile, ClassicalRegister
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
+from qiskit.quantum_info import Statevector
 from qiskit.visualization import plot_histogram
 
 def GHZ_Circuit(n_qubits):
