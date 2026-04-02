@@ -29,9 +29,9 @@ def teleportation(n_qubits):
     qc.barrier()
     qc.measure(1, 1)
     qc.measure(0, 0)
-    with qc.if_test((cr[1], 1)):
+    with qc.if_test((qc.clbits[1], 1)):
         qc.x(2)
-    with qc.if_test((cr[0], 1)):
+    with qc.if_test((qc.clbits[0], 1)):
         qc.z(2)
     qc.ry(3.14, 2)
     qc.measure(2, 2)
