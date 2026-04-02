@@ -34,7 +34,7 @@ def teleportation(n_qubits, theta):
         qc.x(n_qubits-1)
     with qc.if_test((qc.clbits[0], 1)):
         qc.z(n_qubits-1)
-    qc.ry(theta, n_qubits-1)
+    qc.ry(theta, n_qubits-1).inverse()
     qc.measure(n_qubits-1, 2)
     qc.draw("mpl")
     return qc, sv
