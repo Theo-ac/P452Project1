@@ -44,7 +44,8 @@ def hubbard(n_qubits):
     
 def create_Circuit(n_qubits, theta, mode):
     if mode == 0:
-        return teleportation(n_qubits, theta)
+        qc, _sv = teleportation(n_qubits, theta)
+        return qc
     else: 
         return hubbard(n_qubits)
 def measure_Circuit(circuit):
