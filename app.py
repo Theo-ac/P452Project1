@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 from backend import measure_Circuit, create_Circuit, teleportation, GHZ_Circuit
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
 n_qubits = st.slider("How many qubits do you want?", 1, 10, 5)
