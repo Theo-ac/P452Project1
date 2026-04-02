@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from backend import measure_Circuit, create_Circuit, teleportation, GHZ_Circuit
+from qiskit.visualization import plot_histogram
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
 n_qubits = st.slider("How many qubits do you want?", 1, 10, 5)
 theta = 0
