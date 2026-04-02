@@ -47,12 +47,10 @@ def create_Circuit(n_qubits, theta, type):
         return teleportation(n_qubits, theta)
     else: 
         return hubbard(n_qubits)
-def measure_Circuit(circuit):
+def measure_Circuit(n_qubits, theta, type):
     sampler = SamplerV2()
     job = sampler.run([circuit], shots=1024)
     result_ideal = job.result()
-    #print('Results(ideal):', results_ideal)
-    return result_ideal
-    # counts_ideal = result_ideal[0].data.get_counts()
-    # print('Counts(ideal):', counts_ideal)
-    # return counts_ideal
+    counts_ideal = result_ideal[0].data.get_counts()
+    #print('Counts(ideal):', counts_ideal)
+    return counts_ideal
