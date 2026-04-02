@@ -18,7 +18,6 @@ def GHZ_Circuit(n_qubits):
     return qc
 
 def teleportation(n_qubits):
-    cr = ClassicalRegister(3,"c")
     qc = QuantumCircuit(n_qubits)
     qc.h(1)
     qc.cx(1, n_qubits-1)
@@ -28,14 +27,14 @@ def teleportation(n_qubits):
     qc.cx(0,1)
     qc.h(0)
     qc.barrier()
-    qc.measure(1, cr[1])
-    qc.measure(0, cr[0])
+    qc.measure(1, 1)
+    qc.measure(0, 0)
     with qc.if_test((cr[1], 1)):
         qc.x(2)
     with qc.if_test((cr[0], 1)):
         qc.z(2)
     qc.ry(3.14, 2)
-    qc.measure(2, cr[2])
+    qc.measure(2, 2)
     qc.draw("mpl")
     return qc
     
