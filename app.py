@@ -68,7 +68,9 @@ if option == 0:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
     if n_qubits%2 == 0:
-        qc = GHZ_Circuit(n_qubits)
+        U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
+        J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
+        qc = hubbard(n_qubits, U, J)
         st.pyplot(qc.draw("mpl"))
     else:
         st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
