@@ -35,6 +35,11 @@ def teleportation(n_qubits, theta):
     qc.ry(-theta, n_qubits-1)
     qc.measure(n_qubits-1, 2)
     qc.draw("mpl")
+    sv2 = Statevector.from_instruction(qc)
+    for idx, amp in enumerate(sv2.data):
+    if abs(amp) > 0:   # or > 1e-12 for numerical noise
+        bitstring = format(idx, f"0{sv2.num_qubits}b")
+        print(bitstring, amp)
     return qc
     
 def hubbard(n_qubits):
