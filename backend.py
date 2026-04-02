@@ -18,7 +18,7 @@ def GHZ_Circuit(n_qubits):
     return qc
 
 def teleportation(n_qubits):
-    qc = QuantumCircuit(n_qubits)
+    qc = QuantumCircuit(n_qubits, n_qubits)
     qc.h(1)
     qc.cx(1, n_qubits-1)
     qc.barrier()
