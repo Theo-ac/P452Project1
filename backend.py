@@ -1,5 +1,5 @@
 import qiskit
-from qiskit import QuantumCircuit, transpile
+from qiskit import QuantumCircuit, transpile, ClassicalRegister
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
 from qiskit.visualization import plot_histogram
@@ -16,6 +16,32 @@ def GHZ_Circuit(n_qubits):
     
     #qc.draw("mpl")
     return qc
+
+def teleportation(n_qubits):
+    cr = ClassicalRegister(3,"c")
+    qc = QuantumCircuit(n_qubits)
+    qc.h(1)
+    qc.cx(1, n_qubits-1)
+    qc.barrier()
+    qc.ry(3.14, 0)
+    qc.barrier()
+    qc.cx(0,1)
+    qc.h(0)
+    qc.barrier()
+    qc.measure(1, cr[1])
+    qc.measure(0, cr[0])
+    with qc.if_test((cr[1], 1)):
+        qc.x(2)
+    with qc.if_test((cr[0], 1)):
+        qc.z(2)
+    qc.ry(3.14, 2)
+    qc.measure(2, cr[2])
+    qc.draw("mpl")
+    return qc
+    
+def hubbard(n_qubits):
+    return qc
+    
 def create_Circuit(n_qubits, type):
     if type == 0:
         return teleportation(n_qubits)
