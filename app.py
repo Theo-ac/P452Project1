@@ -1,7 +1,7 @@
 import streamlit as st
 from backend import measure_Circuit, create_Circuit, teleportation, GHZ_Circuit
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
-n_qubits = st.slider("How many qubits do you want?", 0, 10, 5)
+n_qubits = st.slider("How many qubits do you want?", 0, 10, 1)
 
 # --- init state once ---
 if "mode" not in st.session_state:
@@ -34,11 +34,11 @@ with col2:
     ):
         st.session_state.mode = 1
         st.rerun()
-
+option = int(st.session_state.mode)
 #st.write("Selected:", st.session_state.mode)
 #ghz = GHZ_Circuit(n_qubits)
-if n_qubits >= 3: 
-    qc = create_Circuit(n_qubits, st.session_state.mode)
+if n_qubits >= 3 && st.session_state.mode == 1: 
+    qc = teleportation(n_qubits)
 else:
     qc = GHZ_Circuit(n_qubits)
 st.pyplot(qc.draw("mpl"))
