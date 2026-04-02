@@ -4,7 +4,6 @@ from backend import measure_Circuit, create_Circuit, teleportation, GHZ_Circuit
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
 n_qubits = st.slider("How many qubits do you want?", 1, 10, 5)
 theta = 0
-mode = 0
 # --- init state once ---
 if "mode" not in st.session_state:
     st.session_state.mode = 0  # 0 for A, 1 for B
@@ -39,9 +38,8 @@ with col2:
 option = int(st.session_state.mode)
 #st.write("Selected:", st.session_state.mode)
 #ghz = GHZ_Circuit(n_qubits)
-if st.session_state.mode == 0: 
+if option == 0: 
     if n_qubits >= 3:
-        mode = 0
         theta = st.slider("What rotation angle do you want to teleport?", -2*np.pi, 2*np.pi, 0.0, step=np.pi/16)
         #theta = 2*np.arctan(0.5) #solved for with inverse trig for desired state in q2.1
         qc, sv = teleportation(n_qubits, theta)
@@ -61,11 +59,10 @@ if st.session_state.mode == 0:
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
-    mode = 1
     qc = GHZ_Circuit(n_qubits)
     st.pyplot(qc.draw("mpl"))
-mqc = create_Circuit(n_qubits, theta, mode)
-counts = measure_Circuit(mqc)
+#mqc = create_Circuit(n_qubits, theta, mode)
+counts = measure_Circuit(qc)
 all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
 full_counts = {state: counts.get(state, 0) for state in all_states}
 st.pyplot(plot_histogram(full_counts))
