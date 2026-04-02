@@ -37,9 +37,12 @@ with col2:
 option = int(st.session_state.mode)
 #st.write("Selected:", st.session_state.mode)
 #ghz = GHZ_Circuit(n_qubits)
-if n_qubits >= 3 and st.session_state.mode == 0: 
-    theta = st.slider("What rotation angle do you want to teleport?", -6.18, 6.18, 0.0, step=0.19625)
-    qc = teleportation(n_qubits, theta)
+if st.session_state.mode == 0: 
+    if n_qubits >= 3:
+        theta = st.slider("What rotation angle do you want to teleport?", -6.18, 6.18, 0.0, step=0.19625)
+        qc = teleportation(n_qubits, theta)
+    else:
+        st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
     qc = GHZ_Circuit(n_qubits)
 st.pyplot(qc.draw("mpl"))
