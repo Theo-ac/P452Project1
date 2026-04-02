@@ -30,9 +30,9 @@ def teleportation(n_qubits, theta):
     qc.barrier(label="Bell State Measurement")
     qc.measure(1, 1)
     qc.measure(0, 0)
-    with qc.if_test((qc.clbits[1], 0)):
+    with qc.if_test((qc.clbits[1], 1)):
         qc.x(n_qubits-1)
-    with qc.if_test((qc.clbits[0], 0)):
+    with qc.if_test((qc.clbits[0], 1)):
         qc.z(n_qubits-1)
     qc.ry(theta, n_qubits-1).inverse()
     qc.measure(n_qubits-1, 2)
