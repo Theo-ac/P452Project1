@@ -58,15 +58,16 @@ if option == 0:
                     with col3:
                         st.write(amp,"|1⟩")
         st.pyplot(qc.draw("mpl"))
+        counts = measure_Circuit(qc)
+        all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
+        full_counts = {state: counts.get(state, 0) for state in all_states}
+        trimmed_counts = counts = {k: v for k, v in full_counts.items() if v != 0}
+        st.pyplot(plot_histogram(trimmed_counts))
+        st.write("***Only plotting non-zero counts***")
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
     qc = GHZ_Circuit(n_qubits)
     st.pyplot(qc.draw("mpl"))
 
-counts = measure_Circuit(qc)
-all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
-full_counts = {state: counts.get(state, 0) for state in all_states}
-trimmed_counts = counts = {k: v for k, v in full_counts.items() if v != 0}
-st.pyplot(plot_histogram(trimmed_counts))
-st.write("***Only plotting non-zero counts***")
+
