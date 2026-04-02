@@ -37,7 +37,7 @@ with col2:
 option = int(st.session_state.mode)
 #st.write("Selected:", st.session_state.mode)
 #ghz = GHZ_Circuit(n_qubits)
-if n_qubits >= 3 && st.session_state.mode == 1: 
+if n_qubits >= 3 and st.session_state.mode == 1: 
     qc = teleportation(n_qubits)
 else:
     qc = GHZ_Circuit(n_qubits)
