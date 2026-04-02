@@ -67,7 +67,10 @@ if option == 0:
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
-    qc = GHZ_Circuit(n_qubits)
-    st.pyplot(qc.draw("mpl"))
+    if n_qubits%2 == 0:
+        qc = GHZ_Circuit(n_qubits)
+        st.pyplot(qc.draw("mpl"))
+    else:
+        st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
 
 
