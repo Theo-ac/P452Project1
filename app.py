@@ -40,7 +40,7 @@ option = int(st.session_state.mode)
 #ghz = GHZ_Circuit(n_qubits)
 if st.session_state.mode == 0: 
     if n_qubits >= 3:
-        theta = st.slider("What rotation angle do you want to teleport?", -2*np.pi, 2*np.pi, 0, step=np.pi/16)
+        theta = st.slider("What rotation angle do you want to teleport?", -2*np.pi, 2*np.pi, 0.0, step=np.pi/16)
         #theta = 2*np.arctan(0.5) #solved for with inverse trig for desired state in q2.1
         qc, sv = teleportation(n_qubits, theta)
         col1, col2, col3 = st.columns([1,1,1])
