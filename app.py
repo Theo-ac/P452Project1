@@ -61,4 +61,5 @@ if st.session_state.mode == 0:
 else:
     qc = GHZ_Circuit(n_qubits)
     st.pyplot(qc.draw("mpl"))
+measure_circuit(qc)
 
