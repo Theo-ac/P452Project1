@@ -42,7 +42,8 @@ if st.session_state.mode == 0:
     if n_qubits >= 3:
         #theta = st.slider("What rotation angle do you want to teleport?", -6.18, 6.18, 0.0, step=0.19625)
         theta = 2*np.arctan(0.5) #solved for with inverse trig for desired state in q2.1
-        qc = teleportation(n_qubits, theta)
+        qc, sv = teleportation(n_qubits, theta)
+        st.write("State Vector: ", sv)
         st.pyplot(qc.draw("mpl"))
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
