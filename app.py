@@ -47,7 +47,7 @@ if st.session_state.mode == 0:
         for idx, amp in enumerate(sv.data):
             if abs(amp) > 0:   # or > 1e-12 for numerical noise
                 bitstring = format(idx, f"0{sv.num_qubits}b")
-                st.write(bitstring, amp)
+                st.write(amp,"|",idx,"⟩")
         st.pyplot(qc.draw("mpl"))
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
