@@ -1,7 +1,7 @@
 import streamlit as st
 from backend import measure_Circuit, create_Circuit, teleportation, GHZ_Circuit
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
-n_qubits = st.slider("How many qubits do you want?", 0, 10, 1)
+n_qubits = st.slider("How many qubits do you want?", 1, 10, 5)
 
 # --- init state once ---
 if "mode" not in st.session_state:
