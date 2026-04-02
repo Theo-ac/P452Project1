@@ -65,13 +65,8 @@ else:
     mode = 1
     qc = GHZ_Circuit(n_qubits)
     st.pyplot(qc.draw("mpl"))
-st.write(type(n_qubits))
-st.write(type(qc))
-st.write(type(theta))
-st.write(type(mode))
-mqc = create_Circuit(n_qubits, theta, mode)
 st.write(type(mqc))
-counts = measure_Circuit(mqc)
+counts = measure_Circuit(qc)
 all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
 full_counts = {state: counts.get(state, 0) for state in all_states}
 st.pyplot(plot_histogram(full_counts))
