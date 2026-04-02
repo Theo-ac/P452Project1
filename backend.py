@@ -23,10 +23,6 @@ def teleportation(n_qubits, theta):
     qc.barrier(label="Bell State Preparation")
     qc.ry(theta, 0)
     sv = Statevector.from_instruction(qc)
-    for idx, amp in enumerate(sv.data):
-        if abs(amp) > 0:   # or > 1e-12 for numerical noise
-            bitstring = format(idx, f"0{sv.num_qubits}b")
-            print(bitstring, amp)
     qc.h(1)
     qc.cx(1, n_qubits-1)
     qc.cx(0,1)
