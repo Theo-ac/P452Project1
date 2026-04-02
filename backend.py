@@ -48,6 +48,7 @@ def create_Circuit(n_qubits, theta, type):
     else: 
         return hubbard(n_qubits)
 def measure_Circuit(n_qubits, theta, type):
+    circuit = create_Circuit(n_qubits, theta, type)
     sampler = SamplerV2()
     job = sampler.run([circuit], shots=1024)
     result_ideal = job.result()
