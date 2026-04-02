@@ -19,14 +19,13 @@ def GHZ_Circuit(n_qubits):
 
 def teleportation(n_qubits, theta):
     qc = QuantumCircuit(n_qubits, n_qubits)
+    qc.barrier(label="Bell State Preparation")
     qc.h(1)
     qc.cx(1, n_qubits-1)
-    qc.barrier()
     qc.ry(theta, 0)
-    qc.barrier()
     qc.cx(0,1)
     qc.h(0)
-    qc.barrier()
+    qc.barrier(label="Bell State Measurement")
     qc.measure(1, 1)
     qc.measure(0, 0)
     with qc.if_test((qc.clbits[1], 1)):
