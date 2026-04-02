@@ -43,11 +43,18 @@ if st.session_state.mode == 0:
         #theta = st.slider("What rotation angle do you want to teleport?", -6.18, 6.18, 0.0, step=0.19625)
         theta = 2*np.arctan(0.5) #solved for with inverse trig for desired state in q2.1
         qc, sv = teleportation(n_qubits, theta)
-        st.write("Your secret qubit: ")
+        col1, col2, col3 = st.columns([1,1,1])
+        with col1:
+            st.write("Your secret qubit:")
         for idx, amp in enumerate(sv.data):
             if abs(amp) > 0:   # or > 1e-12 for numerical noise
                 bitstring = format(idx, f"0{sv.num_qubits}b")
-                st.write(amp,"|",idx,"⟩")
+                if idx == 0:
+                    with col2:
+                        st.write(amp,"|0⟩")
+                else: 
+                    with col3:
+                        st.write(amp,"|1⟩")
         st.pyplot(qc.draw("mpl"))
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
