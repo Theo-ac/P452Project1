@@ -39,15 +39,10 @@ def teleportation(n_qubits, theta):
     qc.draw("mpl")
     return qc, sv
     
-def hubbard(n_qubits):
+def hubbard(n_qubits, U, J):
+    qc = QuantumCircuit(n_qubits)
     return qc
     
-def create_Circuit(n_qubits, theta, mode):
-    if mode == 0:
-        qc, _sv = teleportation(n_qubits, theta)
-        return qc
-    else: 
-        return hubbard(n_qubits)
 def measure_Circuit(circuit):
     sim = AerSimulator()
     tcirc = transpile(circuit, sim)
