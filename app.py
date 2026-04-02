@@ -38,7 +38,7 @@ option = int(st.session_state.mode)
 #st.write("Selected:", st.session_state.mode)
 #ghz = GHZ_Circuit(n_qubits)
 if n_qubits >= 3 and st.session_state.mode == 0: 
-    theta = st.slider("What rotation angle do you want to teleport?", 0, 6.18, 3.14, step=0.19625)
+    theta = st.slider("What rotation angle do you want to teleport?", 0.0, 6.18, 3.14, step=0.19625)
     qc = teleportation(n_qubits, theta)
 else:
     qc = GHZ_Circuit(n_qubits)
