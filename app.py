@@ -65,5 +65,5 @@ else:
 counts = measure_Circuit(n_qubits, theta, int(st.session_state.mode))
 all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
 full_counts = {state: counts.get(state, 0) for state in all_states}
-plot_histogram(full_counts)
+st.pyplot(plot_histogram(full_counts))
 
