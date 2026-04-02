@@ -61,5 +61,9 @@ if st.session_state.mode == 0:
 else:
     qc = GHZ_Circuit(n_qubits)
     st.pyplot(qc.draw("mpl"))
-measure_circuit(qc)
+
+counts = measure_Circuit(example)
+all_states = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
+full_counts = {state: counts.get(state, 0) for state in all_states}
+plot_histogram(full_counts)
 
