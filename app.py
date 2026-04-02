@@ -65,7 +65,10 @@ else:
     mode = 1
     qc = GHZ_Circuit(n_qubits)
     st.pyplot(qc.draw("mpl"))
-st.write(type(n_qubits), type(qc), type(theta), type(mode))
+st.write(type(n_qubits))
+st.write(type(qc))
+st.write(type(theta))
+st.write(type(mode))
 mqc = create_Circuit(n_qubits, theta, mode)
 st.write(type(mqc))
 counts = measure_Circuit(mqc)
