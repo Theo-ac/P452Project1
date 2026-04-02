@@ -17,12 +17,12 @@ def GHZ_Circuit(n_qubits):
     #qc.draw("mpl")
     return qc
 
-def teleportation(n_qubits):
+def teleportation(n_qubits, theta):
     qc = QuantumCircuit(n_qubits, n_qubits)
     qc.h(1)
     qc.cx(1, n_qubits-1)
     qc.barrier()
-    qc.ry(3.14, 0)
+    qc.ry(theta, 0)
     qc.barrier()
     qc.cx(0,1)
     qc.h(0)
@@ -33,7 +33,7 @@ def teleportation(n_qubits):
         qc.x(2)
     with qc.if_test((qc.clbits[0], 1)):
         qc.z(2)
-    qc.ry(3.14, 2)
+    qc.ry(-theta, 2)
     qc.measure(2, 2)
     qc.draw("mpl")
     return qc
@@ -41,9 +41,9 @@ def teleportation(n_qubits):
 def hubbard(n_qubits):
     return qc
     
-def create_Circuit(n_qubits, type):
+def create_Circuit(n_qubits, theta, type):
     if type == 0:
-        return teleportation(n_qubits)
+        return teleportation(n_qubits, theta)
     else: 
         return hubbard(n_qubits)
 def measure_Circuit(circuit):
