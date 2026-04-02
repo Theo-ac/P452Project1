@@ -42,8 +42,8 @@ def teleportation(n_qubits, theta):
 def hubbard(n_qubits):
     return qc
     
-def create_Circuit(n_qubits, theta, type):
-    if type == 0:
+def create_Circuit(n_qubits, theta, mode):
+    if mode == 0:
         return teleportation(n_qubits, theta)
     else: 
         return hubbard(n_qubits)
