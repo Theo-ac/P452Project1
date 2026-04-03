@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-from backend import measure_Circuit, teleportation, hubbard, probability_vs_time, GHZ_Circuit
+from backend import measure_Circuit, teleportation, hubbard, probability_vs_Time, GHZ_Circuit
 from qiskit.quantum_info import Statevector
 from qiskit.visualization import plot_histogram
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
