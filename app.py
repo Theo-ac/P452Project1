@@ -69,7 +69,7 @@ if option == 0:
     else:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
-    if n_qubits%2 == 0:
+    if n_qubits == 4:
         U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
         qc = hubbard(n_qubits, U, J, 1)
@@ -92,5 +92,5 @@ else:
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
     else:
-        st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
+        st.write("You'll want 4 qubits to simulate a2-site Fermi-Hubbard Model :]")
 
