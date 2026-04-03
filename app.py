@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
-from backend import measure_Circuit, teleportation, hubbard, GHZ_Circuit
+import matplotlib.pyplot as plt
+from backend import measure_Circuit, teleportation, hubbard, probability_vs_time, GHZ_Circuit
 from qiskit.quantum_info import Statevector
 from qiskit.visualization import plot_histogram
 st.title("Theo's 10-Qubit Universal Quantum Computer Simulator")
@@ -80,7 +81,7 @@ else:
         n_qubits=n_qubits,
         J=J,
         U=U,
-        dt=dt,
+        dt=0.05,
         max_time=np.pi,
         target_state="0100"      # track probability of |0001>
         )
@@ -89,7 +90,7 @@ else:
         plt.xlabel("Time")
         plt.ylabel("Probability of |0100>")
         plt.title("Time Evolution of Probability")
-        plt.show()
+        st.pyplot(plt.show())
     else:
         st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
 
