@@ -75,7 +75,7 @@ else:
         qc = hubbard(n_qubits, U, J, 1)
         fig_circ = qc.draw("mpl")
         st.pyplot(fig_circ)
-        initial_state = Statevector.from_label("1000")
+        initial_state = Statevector.from_label("0001")
         times, probs = probability_vs_Time(
         initial_state=initial_state,   # your prepared state
         n_qubits=n_qubits,
@@ -83,7 +83,7 @@ else:
         U=U,
         dt=0.05,
         max_time=np.pi,
-        target_state="0010"      # track probability of |0001>
+        target_state="0100"      # track probability of |0001>
         )
         fig, ax = plt.subplots()
         ax.plot(times, probs)
