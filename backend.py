@@ -1,4 +1,5 @@
 import qiskit
+import numpy as np
 from qiskit import QuantumCircuit, transpile, ClassicalRegister
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
@@ -38,9 +39,52 @@ def teleportation(n_qubits, theta):
     qc.measure(n_qubits-1, 2)
     qc.draw("mpl")
     return qc, sv
-    
-def hubbard(n_qubits, U, J):
-    qc = QuantumCircuit(n_qubits)
+
+def hop_block(circ, i, j, theta):
+    # e^{-i theta (X_i X_j + Y_i Y_j)}
+    circ.sdg(i); circ.sdg(j)
+    circ.h(i); circ.h(j)
+    circ.cx(i, j)
+    circ.rz(2*theta, j)
+    circ.cx(i, j)
+    circ.h(i); circ.h(j)
+    circ.s(i); circ.s(j)
+
+def zz_block(circ, i, j, phi):
+    # e^{-i phi Z_i Z_j}
+    circ.cx(i, j)
+    circ.rz(2*phi, j)
+    circ.cx(i, j)
+
+def qubit_index(site, spin):
+    # spin: 'up' or 'down'
+    return 2*site + (0 if spin == 'up' else 1)
+
+def hubbard(n_qubits, U, J, dt):
+    num_sites = num_qubits // 2
+    qc = QuantumCircuit(num_qubits)
+
+    theta = J * dt      # hopping angle (up to your convention)
+    phi   = U * dt / 4  # interaction angle (factor from n_up n_down mapping)
+
+    # 1) Hopping terms: between neighboring sites, for both spins
+    for site in range(num_sites - 1):
+        # up spin hopping: (site, site+1)
+        i_up = qubit_index(site, 'up')
+        j_up = qubit_index(site + 1, 'up')
+        hop_block(qc, i_up, j_up, theta)
+
+        # down spin hopping: (site, site+1)
+        i_dn = qubit_index(site, 'down')
+        j_dn = qubit_index(site + 1, 'down')
+        hop_block(qc, i_dn, j_dn, theta)
+
+    # 2) On-site interaction terms: U n_{i↑} n_{i↓}
+    for site in range(num_sites):
+        q_up = qubit_index(site, 'up')
+        q_dn = qubit_index(site, 'down')
+        zz_block(qc, q_up, q_dn, phi)
+
     return qc
     
 def measure_Circuit(circuit):
