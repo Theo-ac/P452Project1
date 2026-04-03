@@ -72,7 +72,7 @@ def jw_hop_block(circ, i, j, theta):
     hop_block(circ, i, j, theta)
 
     # Undo Z string (important!)
-    for k in range(i+1, j):
+    for k in reversed(range(i+1, j)):
         circ.cx(k,j)
 
 
