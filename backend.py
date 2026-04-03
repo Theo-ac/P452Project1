@@ -106,10 +106,6 @@ def time_evolve(n_qubits, J, U, t, dt):
     qc = QuantumCircuit(n_qubits)
     steps = int(t / dt)
 
-    # prepare initial state
-    qc.append(initial_state.to_instruction(), range(n_qubits))
-
-    # apply Trotter steps
     for _ in range(steps):
         qc.compose(hubbard(n_qubits, J, U, dt), inplace=True)
 
