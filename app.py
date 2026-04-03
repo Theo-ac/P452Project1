@@ -74,7 +74,7 @@ else:
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
         qc = hubbard(n_qubits, U, J, 1)
         st.pyplot(qc.draw("mpl"))
-        initial_state = Statevector.from_label("0001").to_circuit()
+        initial_state = Statevector.from_label("0001")
         times, probs = probability_vs_Time(
         initial_state=initial_state,   # your prepared state
         n_qubits=n_qubits,
