@@ -131,6 +131,7 @@ def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_stat
 
         index = int(target_state, 2)
         probs.append(np.abs(state[index])**2)
+    return times, probs
 
 def measure_Circuit(circuit):
     sim = AerSimulator()
