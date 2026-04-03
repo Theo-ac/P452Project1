@@ -92,5 +92,5 @@ else:
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
     else:
-        st.write("You'll want 4 qubits to simulate a2-site Fermi-Hubbard Model :]")
+        st.write("You'll want 4 qubits to simulate a 2-site Fermi-Hubbard Model :]")
 
