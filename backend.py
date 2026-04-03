@@ -114,14 +114,6 @@ def time_evolve(n_qubits, J, U, dt, t):
         qc.compose(hubbard(n_qubits, J, U, dt), inplace=True)
 
     return qc
-    
-def TE_Circuit(num_qubits, J, U, t, dt):
-    sim = AerSimulator()
-    ste
-    job = sim.run(time_evolve(initial_state, num_qubits, J, U, dt, steps))
-    result = job.result()
-    counts = result.get_counts()
-    return counts
 
 def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_state):
     sim = AerSimulator(method="statevector")
