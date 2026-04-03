@@ -68,6 +68,7 @@ if option == 0:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
     if n_qubits%2 == 0:
+        initial_state = Statevector.from_label("0001")
         U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
         qc = hubbard(n_qubits, U, J, 1)
