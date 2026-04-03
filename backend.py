@@ -89,6 +89,7 @@ def hubbard(n_qubits, U, J, dt):
     phi   = U * dt / 4  # interaction angle (factor from n_up n_down mapping)
 
     # 1) Hopping terms: between neighboring sites, for both spins
+    qc.barrier(label="Hopping Terms")
     for site in range(n_sites - 1):
         # up spin hopping: (site, site+1)
         i_up = qubit_index(site, 'up')
@@ -101,6 +102,7 @@ def hubbard(n_qubits, U, J, dt):
         jw_hop_block(qc, i_dn, j_dn, theta)
 
     # 2) On-site interaction terms: U n_{i↑} n_{i↓}
+    qc.barrier(label="Interaction terms")
     for site in range(n_sites):
         q_up = qubit_index(site, 'up')
         q_dn = qubit_index(site, 'down')
