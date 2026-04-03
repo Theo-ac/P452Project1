@@ -120,7 +120,7 @@ def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_stat
     times = np.arange(0, max_time, dt)
     probs = []
 
-   for t in times:
+    for t in times:
         qc = QuantumCircuit(n_qubits)
         qc.initialize(initial_state.data, qc.qubits)
 
