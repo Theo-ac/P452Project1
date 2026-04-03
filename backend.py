@@ -59,7 +59,22 @@ def zz_block(circ, i, j, phi):
 def qubit_index(site, spin):
     # spin: 'up' or 'down'
     return 2*site + (0 if spin == 'up' else 1)
+    
+def jw_hop_block(circ, i, j, theta):
+    if i > j:
+        i, j = j, i
 
+    # Apply Z string
+    for k in range(i+1, j):
+        circ.z(k)
+
+    # Your original hop block
+    hop_block(circ, i, j, theta)
+
+    # Undo Z string (important!)
+    for k in range(i+1, j):
+        circ.z(k)
+        
 def hubbard(n_qubits, U, J, dt):
     n_sites = n_qubits // 2
     qc = QuantumCircuit(n_qubits)
@@ -72,12 +87,12 @@ def hubbard(n_qubits, U, J, dt):
         # up spin hopping: (site, site+1)
         i_up = qubit_index(site, 'up')
         j_up = qubit_index(site + 1, 'up')
-        hop_block(qc, i_up, j_up, theta)
+        jw_hop_block(qc, i_up, j_up, theta)
 
         # down spin hopping: (site, site+1)
         i_dn = qubit_index(site, 'down')
         j_dn = qubit_index(site + 1, 'down')
-        hop_block(qc, i_dn, j_dn, theta)
+        jw_hop_block(qc, i_dn, j_dn, theta)
 
     # 2) On-site interaction terms: U n_{i↑} n_{i↓}
     for site in range(n_sites):
