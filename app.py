@@ -81,7 +81,7 @@ else:
         n_qubits=n_qubits,
         J=J,
         U=U,
-        dt=0.1,
+        dt=0.05,
         max_time=np.pi,
         target_state="0100"      # track probability of |0001>
         )
