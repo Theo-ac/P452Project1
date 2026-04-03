@@ -120,7 +120,7 @@ def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_stat
 
         for _ in range(steps):
             qc.compose(hubbard(n_qubits, J, U, dt), inplace=True)
-
+        qc.save_statevector()
         # run and get statevector
         state = sim.run(qc).result().get_statevector()
 
