@@ -108,23 +108,19 @@ def TE_Circuit(initial_state, num_qubits, J, U, dt, steps):
 
 def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_state):
     sim = AerSimulator(method="statevector")
-
     times = np.arange(0, max_time, dt)
     probs = []
-    for t in times:
-        steps = int(t / dt)
 
-        # build evolution circuit
+    for t in times:
         qc = QuantumCircuit(n_qubits)
         qc.initialize(initial_state.data, qc.qubits)
 
-        for _ in range(steps):
-            qc.compose(hubbard(n_qubits, J, U, dt), inplace=True)
+        # Apply evolution for time t directly
+        qc.compose(hubbard(n_qubits, J, U, t), inplace=True)
         qc.save_statevector()
-        # run and get statevector
+
         state = sim.run(qc).result().get_statevector()
 
-        # probability of target basis state
         index = int(target_state, 2)
         prob = np.abs(state[index])**2
         probs.append(prob)
