@@ -61,14 +61,14 @@ def qubit_index(site, spin):
     return 2*site + (0 if spin == 'up' else 1)
 
 def hubbard(n_qubits, U, J, dt):
-    num_sites = num_qubits // 2
-    qc = QuantumCircuit(num_qubits)
+    n_sites = n_qubits // 2
+    qc = QuantumCircuit(n_qubits)
 
     theta = J * dt      # hopping angle (up to your convention)
     phi   = U * dt / 4  # interaction angle (factor from n_up n_down mapping)
 
     # 1) Hopping terms: between neighboring sites, for both spins
-    for site in range(num_sites - 1):
+    for site in range(n_sites - 1):
         # up spin hopping: (site, site+1)
         i_up = qubit_index(site, 'up')
         j_up = qubit_index(site + 1, 'up')
@@ -80,7 +80,7 @@ def hubbard(n_qubits, U, J, dt):
         hop_block(qc, i_dn, j_dn, theta)
 
     # 2) On-site interaction terms: U n_{i↑} n_{i↓}
-    for site in range(num_sites):
+    for site in range(n_sites):
         q_up = qubit_index(site, 'up')
         q_dn = qubit_index(site, 'down')
         zz_block(qc, q_up, q_dn, phi)
