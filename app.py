@@ -75,7 +75,7 @@ else:
         qc = hubbard(n_qubits, U, J, 1)
         fig_circ = qc.draw("mpl")
         st.pyplot(fig_circ)
-        initial_state = Statevector.from_label("0001")
+        initial_state = Statevector.from_label("0011")
         times, probs = probability_vs_Time(
         initial_state=initial_state,   # your prepared state
         n_qubits=n_qubits,
@@ -88,7 +88,7 @@ else:
         fig, ax = plt.subplots()
         ax.plot(times, probs)
         ax.set_xlabel("Time")
-        ax.set_ylabel("Probability of |0100>")
+        ax.set_ylabel("Probability of |1100>")
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
     else:
