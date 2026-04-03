@@ -111,13 +111,13 @@ def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_stat
 
     times = np.arange(0, max_time, dt)
     probs = []
-
+    initial_circ = QuantumCircuit(n_qubits).x(initial_state)
     for t in times:
         steps = int(t / dt)
 
         # build evolution circuit
         qc = QuantumCircuit(n_qubits)
-        qc.append(initial_state.to_circuit(), range(n_qubits))
+        qc.append(initial_circ, range(n_qubits))
 
         for _ in range(steps):
             qc.compose(hubbard(n_qubits, J, U, dt), inplace=True)
