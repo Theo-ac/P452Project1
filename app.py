@@ -73,7 +73,8 @@ else:
         U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
         qc = hubbard(n_qubits, U, J, 1)
-        st.pyplot(qc.draw("mpl"))
+        fig_circ = qc.draw("mpl")
+        st.pyplot(fig_circ)
         initial_state = Statevector.from_label("0001")
         times, probs = probability_vs_Time(
         initial_state=initial_state,   # your prepared state
@@ -84,12 +85,12 @@ else:
         max_time=np.pi,
         target_state="0100"      # track probability of |0001>
         )
-
-        plt.plot(times, probs)
-        plt.xlabel("Time")
-        plt.ylabel("Probability of |0100>")
-        plt.title("Time Evolution of Probability")
-        st.pyplot(plt.show())
+        fig, ax = plt.subplots()
+        ax.plot(times, probs)
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Probability of |0100>")
+        ax.set_title("Time Evolution of Probability")
+        st.pyplot(fig)
     else:
         st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
 
