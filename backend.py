@@ -87,6 +87,51 @@ def hubbard(n_qubits, U, J, dt):
 
     return qc
     
+def time_evolve(initial_state, num_qubits, J, U, dt, steps):
+    qc = QuantumCircuit(num_qubits)
+
+    # prepare initial state
+    qc.append(initial_state.to_instruction(), range(num_qubits))
+
+    # apply Trotter steps
+    for _ in range(steps):
+        qc.compose(hubbard(num_qubits, J, U, dt), inplace=True)
+
+    return qc
+    
+def TE_Circuit(initial_state, num_qubits, J, U, dt, steps):
+    sim = AerSimulator()
+    job = sim.run(time_evolve(initial_state, num_qubits, J, U, dt, steps))
+    result = job.result()
+    counts = result.get_counts()
+    return counts
+
+def probability_vs_Time(initial_state, n_qubits, J, U, dt, max_time, target_state):
+    sim = AerSimulator(method="statevector")
+
+    times = np.arange(0, max_time, dt)
+    probs = []
+
+    for t in times:
+        steps = int(t / dt)
+
+        # build evolution circuit
+        qc = QuantumCircuit(n_qubits)
+        qc.append(initial_state.to_instruction(), range(n_qubits))
+
+        for _ in range(steps):
+            qc.compose(hubbard(n_qubits, J, U, dt), inplace=True)
+
+        # run and get statevector
+        state = sim.run(qc).result().get_statevector()
+
+        # probability of target basis state
+        index = int(target_state, 2)
+        prob = np.abs(state[index])**2
+        probs.append(prob)
+
+    return times, probs
+
 def measure_Circuit(circuit):
     sim = AerSimulator()
     tcirc = transpile(circuit, sim)
