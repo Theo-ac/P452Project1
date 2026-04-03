@@ -102,7 +102,7 @@ def hubbard(n_qubits, U, J, dt):
 
     return qc
     
-def time_evolve(n_qubits, J, U, dt, t):
+def time_evolve(n_qubits, J, U, t, dt):
     qc = QuantumCircuit(n_qubits)
     steps = int(total_time / dt)
 
