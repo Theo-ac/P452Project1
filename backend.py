@@ -66,15 +66,16 @@ def jw_hop_block(circ, i, j, theta):
 
     # Apply Z string
     for k in range(i+1, j):
-        circ.z(k)
+        circ.cx(k,j)
 
     # Your original hop block
     hop_block(circ, i, j, theta)
 
     # Undo Z string (important!)
     for k in range(i+1, j):
-        circ.z(k)
-        
+        circ.cx(k,j)
+
+
 def hubbard(n_qubits, U, J, dt):
     n_sites = n_qubits // 2
     qc = QuantumCircuit(n_qubits)
