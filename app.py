@@ -91,9 +91,9 @@ else:
         ax.set_ylabel("Probability of |0100>")
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
-        indices = np.where(np.abs(np.array(probs) - 1) < 1e-3)[0]
+        indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
         if len(indices) != 0:
-            st.write("The first time at full probability is: ", indices[0])
+            st.write("The first time at full probability is: ", times[indices[0]])
     else:
         st.write("You'll want 4 qubits to simulate a 2-site Fermi-Hubbard Model :]")
 
