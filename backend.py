@@ -42,13 +42,13 @@ def teleportation(n_qubits, theta):
 
 def hop_block(circ, i, j, theta):
     # e^{-i theta (X_i X_j + Y_i Y_j)}
-    circ.sdg(i); circ.sdg(j)
     circ.h(i); circ.h(j)
+    circ.sdg(i); circ.sdg(j)
     circ.cx(i, j)
     circ.rz(2*theta, j)
     circ.cx(i, j)
-    circ.h(i); circ.h(j)
     circ.s(i); circ.s(j)
+    circ.h(i); circ.h(j)
 
 def zz_block(circ, i, j, phi):
     # e^{-i phi Z_i Z_j}
