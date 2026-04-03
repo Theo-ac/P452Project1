@@ -69,12 +69,27 @@ if option == 0:
         st.write("You'll want at least 3 qubits to perform quantum teleportation :]")
 else:
     if n_qubits%2 == 0:
+        dt = 1
         initial_state = Statevector.from_label("0001")
         U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
         qc = hubbard(n_qubits, U, J, 1)
         st.pyplot(qc.draw("mpl"))
+        times, probs = probability_vs_time(
+        initial_state=initial_state,   # your prepared state
+        n_qubits=n_qubits,
+        J=J,
+        U=U,
+        dt=dt,
+        max_time=np.pi,
+        target_state="0100"      # track probability of |0001>
+        )
+
+        plt.plot(times, probs)
+        plt.xlabel("Time")
+        plt.ylabel("Probability of |0100>")
+        plt.title("Time Evolution of Probability")
+        plt.show()
     else:
         st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
-
 
