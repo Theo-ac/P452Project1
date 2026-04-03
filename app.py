@@ -70,7 +70,7 @@ else:
     if n_qubits%2 == 0:
         U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
-        qc = hubbard(n_qubits, U, J)
+        qc = hubbard(n_qubits, U, J, 1)
         st.pyplot(qc.draw("mpl"))
     else:
         st.write("You'll want an even number of qubits to simulate the Fermi-Hubbard Model :]")
