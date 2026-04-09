@@ -99,7 +99,7 @@ else:
         fig, ax = plt.subplots()
         ax.plot(times, probs, stayprobs)
         ax.set_xlabel("Time")
-        ax.set_ylabel("Probabilities)
+        ax.set_ylabel("Probabilities")
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
         indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
