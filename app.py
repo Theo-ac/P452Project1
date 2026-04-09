@@ -94,7 +94,7 @@ else:
         U=U,
         dt=0.05,
         max_time=np.pi,
-        target_state=initial_state     # track probability of |0001>
+        target_state=istate    # track probability of |0001>
         )
         fig, ax = plt.subplots()
         ax.plot(times, probs, stayprobs)
