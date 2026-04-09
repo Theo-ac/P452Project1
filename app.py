@@ -87,10 +87,19 @@ else:
         max_time=np.pi,
         target_state=fstate     # track probability of |0001>
         )
+        staytimes, stayprobs = probability_vs_Time(
+        initial_state=initial_state,   # your prepared state
+        n_qubits=n_qubits,
+        J=J,
+        U=U,
+        dt=0.05,
+        max_time=np.pi,
+        target_state=initial_state     # track probability of |0001>
+        )
         fig, ax = plt.subplots()
-        ax.plot(times, probs)
+        ax.plot(times, probs, stayprobs)
         ax.set_xlabel("Time")
-        ax.set_ylabel("Probability of |0100>")
+        ax.set_ylabel("Probability of |",fstate,">")
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
         indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
