@@ -1,1 +1,1 @@
-Hi
+Project 1 For Quantum Optics and Gases, a full-stack 10-qubit simulation tool to simulate Teleportation and Fermi-Hubbard quantum circuits. The backend uses Qiskit, and it's deployed as a web application via Streamlit: https://p452project1-mrqujz3uhuobyjcmegmcsd.streamlit.app/
