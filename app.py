@@ -97,8 +97,8 @@ else:
         target_state=istate    # track probability of initial state
         )
         fig, ax = plt.subplots()
-        ax.plot(times, probs, label="|",fstate,">")
-        ax.plot(staytimes, stayprobs, label="|",istate,">")
+        ax.plot(times, probs, label="|"+fstate+">")
+        ax.plot(staytimes, stayprobs, label="|"+istate+">")
         ax.set_xlabel("Time")
         ax.set_ylabel("Probability of Evolving to:")
         ax.set_title("Time Evolution of Probability")
