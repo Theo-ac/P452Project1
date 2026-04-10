@@ -72,11 +72,11 @@ else:
     if n_qubits == 4:
         U = st.slider("What interaction scaling U do you want?", 0, 10, 1)
         J = st.slider("What kinetic energy scaling J do you want?", 0, 10, 1)
-        istate = st.text_input("What's your initial 4-qubit state? Use little-endian ordering.", value="0001")
-        fstate = st.text_input("What's your final 4-qubit state? Use little-endian ordering.", value="0100")
         qc = hubbard(n_qubits, U, J, 1)
         fig_circ = qc.draw("mpl")
         st.pyplot(fig_circ)
+        istate = st.text_input("What's your initial 4-qubit state? Use little-endian ordering.", value="0001")
+        fstate = st.text_input("What's your final 4-qubit state? Use little-endian ordering.", value="0100")
         initial_state = Statevector.from_label(istate)
         times, probs = probability_vs_Time(
         initial_state=initial_state,   # your prepared state
