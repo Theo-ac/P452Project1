@@ -98,12 +98,15 @@ else:
         )
         fig, ax = plt.subplots()
         ax.plot(times, probs, label="|"+fstate+">")
-        ax.plot(staytimes, stayprobs, label="|"+istate+">")
+        checked = st.checkbox("See probabiltiies for initial state as well?")
+        if checked:
+            ax.plot(staytimes, stayprobs, label="|"+istate+">")
         ax.set_xlabel("Time")
         ax.set_ylabel("Probability of Evolving to:")
         ax.set_title("Time Evolution of Probability")
         ax.legend()
         st.pyplot(fig)
+        
         indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
         if len(indices) != 0:
             st.write("The first time at full probability is: ", times[indices[0]])
