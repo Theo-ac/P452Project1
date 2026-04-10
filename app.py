@@ -85,7 +85,7 @@ else:
         U=U,
         dt=0.05,
         max_time=np.pi,
-        target_state=fstate     # track probability of |0001>
+        target_state=fstate     # track probability of final state
         )
         staytimes, stayprobs = probability_vs_Time(
         initial_state=initial_state,   # your prepared state
@@ -94,12 +94,13 @@ else:
         U=U,
         dt=0.05,
         max_time=np.pi,
-        target_state=istate    # track probability of |0001>
+        target_state=istate    # track probability of initial state
         )
         fig, ax = plt.subplots()
-        ax.plot(times, probs, staytimes, stayprobs)
+        ax.plot(times, probs, label=("|",fstate,">"))
+        ax.plot(staytimes, stayprobs, label=("|",istate,">"))
         ax.set_xlabel("Time")
-        ax.set_ylabel("Probabilities")
+        ax.set_ylabel("Probability of Evolving to:")
         ax.set_title("Time Evolution of Probability")
         st.pyplot(fig)
         indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
