@@ -97,7 +97,7 @@ else:
         target_state=istate    # track probability of |0001>
         )
         fig, ax = plt.subplots()
-        ax.plot(times, probs, stayprobs)
+        ax.plot(times, probs, staytimes, stayprobs)
         ax.set_xlabel("Time")
         ax.set_ylabel("Probabilities")
         ax.set_title("Time Evolution of Probability")
