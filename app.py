@@ -102,6 +102,7 @@ else:
         ax.set_xlabel("Time")
         ax.set_ylabel("Probability of Evolving to:")
         ax.set_title("Time Evolution of Probability")
+        ax.legend()
         st.pyplot(fig)
         indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
         if len(indices) != 0:
