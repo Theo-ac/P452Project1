@@ -109,7 +109,7 @@ else:
         
         indices = np.where(np.abs(np.array(probs) - 1) < 1e-6)[0]
         if len(indices) != 0:
-            st.write("The first time at full probability is: ", times[indices[0]])
+            st.write("The first time at full probability is: ", times[indices[0]], "s")
     else:
         st.write("You'll want 4 qubits to simulate a 2-site Fermi-Hubbard Model :]")
 
